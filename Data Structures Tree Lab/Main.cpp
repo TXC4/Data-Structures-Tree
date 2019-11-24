@@ -40,13 +40,12 @@ int main()
 	Tree.insertBinarySearchTree(&nodeList[6]);
 	Tree.insertBinarySearchTree(&nodeList[7]);
 
-	Tree.inOrderTraversalIterative();
-	Tree.findCustomerIterative("Ortiz");
-	
-	//Tree.findCustomerRecursive("Ortiz");
+	Tree.inOrderTraversalIterative(Tree.getRoot());
+	Tree.findCustomerIterative("Ortiz"); 
+	Tree.findCustomerRecursive(Tree.getRoot(), "Ortiz");
 	Tree.findCustomerIterative("Penton");
-	//Tree.findCustomerRecursive("Penton");
-	//TODO Start with Ikerd and print tree inorder coming back to Ikerd
+	Tree.findCustomerRecursive(Tree.getRoot(), "Penton");
+	Tree.inOrderTraversalIterative(Tree.findCustomerIterative("Ikerd"));
 	//Tree.preOrderTraversalIterative();
 	//Tree.postOrderTraversalIterative();
 	cin.get();

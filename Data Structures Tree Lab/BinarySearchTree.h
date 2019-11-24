@@ -15,13 +15,14 @@ public:
 		root->name = "";
 		root->phone = "";
 	}
+	Node* getRoot();
 	Node* insertBinarySearchTree(Node* newNode);
 	Node* findCustomerIterative(std::string searchName);
-	Node* findCustomerRecursive(std::string searchName);
+	Node* findCustomerRecursive(Node* thisRoot, std::string searchName);
 	Node* inOrderSuccessor(Node* searchNode);
 	std::string getCustomerName(Node* searchNode);
 	std::string getCustomerPhone(Node* searchNode);
-	void inOrderTraversalIterative();
+	void inOrderTraversalIterative(Node* thisRoot);
 	void preOrderTraversalIterative();
 	void postOrderTraversalIterative();
 private:

@@ -4,6 +4,11 @@
 
 using namespace std;
 
+Node * BinarySearchTree::getRoot()
+{
+	return root;
+}
+
 Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
 {
 	newNode->lTag = false;
@@ -77,16 +82,33 @@ Node * BinarySearchTree::findCustomerIterative(string searchName)
 		}
 		if (searchName == temp->name)
 		{
-			cout << "Found:  " << temp->name << ", " << temp->phone << endl;
+			cout << "Iterative Search Found:  " << temp->name << ", " << temp->phone << endl;
 			return temp;
 		}
 	}
-	cout << searchName << " not found in tree" << endl;
+	cout << "Iterative Search: " << searchName << " not found in tree" << endl;
 	return nullptr;
 }
 
-Node * BinarySearchTree::findCustomerRecursive(string searchName)
+Node * BinarySearchTree::findCustomerRecursive(Node* thisRoot, string searchName)
 {
+	Node* temp = thisRoot->left;
+	if (searchName < temp->name && temp->lTag == true)
+		temp = temp->left;
+	else if (searchName > temp->name && temp->rTag == true)
+	{
+		temp = temp->right;
+	}
+	else if (searchName == temp->name)
+	{
+		cout << "Recursive Search Found:  " << temp->name << ", " << temp->phone << endl;
+		return temp;
+	}
+	if (temp->rTag == true || temp->lTag == true)
+	{
+ 		return findCustomerRecursive(temp, searchName);
+	}
+	cout << "Recursive Search: " << searchName << " not found in tree" << endl;
 	return nullptr;
 }
 
@@ -115,14 +137,14 @@ Node* findInorderSuc(Node* temp)
 	return temp;
 }
 
-void BinarySearchTree::inOrderTraversalIterative()
+void BinarySearchTree::inOrderTraversalIterative(Node* thisRoot)
 {
-	Node* temp = root->left;
+	Node* temp = thisRoot->left;
 	while (temp->lTag == true)
 	{
 		temp = temp->left;
 	}
-	while (temp != root)
+	while (temp != thisRoot)
 	{
 		cout << temp->name << ", " << temp->phone << endl;
 		temp = findInorderSuc(temp);
