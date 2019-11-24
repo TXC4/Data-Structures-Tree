@@ -64,6 +64,24 @@ Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
 
 Node * BinarySearchTree::findCustomerIterative(string searchName)
 {
+	Node* temp = root->left;
+	while (temp->lTag == true || temp->rTag == true)
+	{
+		if (searchName < temp->name)
+		{
+			temp = temp->left;
+		}
+		else if (searchName > temp->name)
+		{
+			temp = temp->right;
+		}
+		if (searchName == temp->name)
+		{
+			cout << "Found:  " << temp->name << ", " << temp->phone << endl;
+			return temp;
+		}
+	}
+	cout << searchName << " not found in tree" << endl;
 	return nullptr;
 }
 

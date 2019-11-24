@@ -39,10 +39,12 @@ int main()
 	Tree.insertBinarySearchTree(&nodeList[5]);
 	Tree.insertBinarySearchTree(&nodeList[6]);
 	Tree.insertBinarySearchTree(&nodeList[7]);
+
 	Tree.inOrderTraversalIterative();
-	//Tree.findCustomerIterative("Ortiz");
+	Tree.findCustomerIterative("Ortiz");
+	
 	//Tree.findCustomerRecursive("Ortiz");
-	//Tree.findCustomerIterative("Penton");
+	Tree.findCustomerIterative("Penton");
 	//Tree.findCustomerRecursive("Penton");
 	//TODO Start with Ikerd and print tree inorder coming back to Ikerd
 	//Tree.preOrderTraversalIterative();
