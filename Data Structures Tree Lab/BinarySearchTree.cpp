@@ -139,16 +139,26 @@ Node* findInorderSuc(Node* temp)
 
 void BinarySearchTree::inOrderTraversalIterative(Node* thisRoot)
 {
-	Node* temp = thisRoot->left;
+	string startPoint = thisRoot->name;
+	if (startPoint == "")
+		startPoint = "Root";
+	cout << "INORDER TRAVERSAL ITERATIVE from " << startPoint << endl;
+	
+	Node* temp = thisRoot;
+	if (thisRoot == root)
+	{
+		temp = thisRoot->left;
+	}
 	while (temp->lTag == true)
 	{
 		temp = temp->left;
 	}
-	while (temp != thisRoot)
+	while (temp != root)
 	{
 		cout << temp->name << ", " << temp->phone << endl;
 		temp = findInorderSuc(temp);
 	}
+	cout << endl;
 }
 
 void BinarySearchTree::preOrderTraversalIterative()

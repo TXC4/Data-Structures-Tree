@@ -46,6 +46,12 @@ int main()
 	Tree.findCustomerIterative("Penton");
 	Tree.findCustomerRecursive(Tree.getRoot(), "Penton");
 	Tree.inOrderTraversalIterative(Tree.findCustomerIterative("Ikerd"));
+
+	Tree.insertBinarySearchTree(&nodeList[8]);
+	Tree.insertBinarySearchTree(&nodeList[9]);
+	Tree.insertBinarySearchTree(&nodeList[10]);
+
+	Tree.inOrderTraversalIterative(Tree.getRoot());
 	//Tree.preOrderTraversalIterative();
 	//Tree.postOrderTraversalIterative();
 	cin.get();
