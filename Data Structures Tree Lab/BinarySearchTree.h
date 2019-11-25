@@ -26,6 +26,7 @@ public:
 	void inOrderTraversalIterative(Node* thisRoot);
 	void preOrderTraversalIterative();
 	void postOrderTraversalIterative();
+	void postOrderTraversalRecursive(Node* thisRoot);
 
 	void deleteNode(std::string searchName);
 	void reverseInOrderTraverse();

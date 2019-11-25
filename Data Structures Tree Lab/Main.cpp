@@ -42,6 +42,7 @@ int main()
 	Tree.insertBinarySearchTree(&nodeList[6]);
 	Tree.insertBinarySearchTree(&nodeList[7]);
 
+
 	Tree.inOrderTraversalIterative(Tree.getRoot());
 	Tree.findCustomerIterative("Ortiz"); 
 	Tree.findCustomerRecursive(Tree.getRoot(), "Ortiz");
@@ -82,5 +83,9 @@ int main()
 		endl <<
 		"BEGIN A OPTION TASKS" <<
 		endl << endl;
+
+	Tree.postOrderTraversalIterative();
+	cout << endl << "POST ORDER RECURSIVE" << endl;
+	Tree.postOrderTraversalRecursive(Tree.getRoot()->left);
 	cin.get();
 }

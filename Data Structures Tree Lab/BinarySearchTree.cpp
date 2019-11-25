@@ -251,9 +251,23 @@ void BinarySearchTree::postOrderTraversalIterative()
 	}
 }
 
+void BinarySearchTree::postOrderTraversalRecursive(Node* thisRoot)
+{
+	thisRoot = thisRoot;
+	//if (thisRoot->rTag == false && thisRoot->lTag == false)
+	//	return;
+	if (thisRoot->lTag == true)
+		postOrderTraversalRecursive(thisRoot->left);
+	if (thisRoot->rTag == true)
+		postOrderTraversalRecursive(thisRoot->right);
+
+	cout << thisRoot->name << endl;
+}
+
 void BinarySearchTree::deleteNode(std::string searchName)
 {
 	Node* toDelete = findCustomerIterative(searchName);
+	Node* returnMeToStorage = toDelete;
 	Node* parent = findParent(searchName);
 	Node* temp = toDelete;
 	Node* grandChild;
@@ -270,7 +284,7 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		toDelete->name = temp->name;
 		toDelete->phone = temp->phone;
 		cout << "Deleted " << searchName << endl;
-		//delete temp;
+		//delete returnMeToStorage;
 	}
 	if (temp->lTag == true || temp->rTag == true) //has one child
 	{
