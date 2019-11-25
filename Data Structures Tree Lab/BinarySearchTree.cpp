@@ -114,17 +114,22 @@ Node * BinarySearchTree::findCustomerRecursive(Node* thisRoot, string searchName
 	return nullptr;
 }
 
-Node * BinarySearchTree::inOrderSuccessor(Node * searchNode)
+Node* BinarySearchTree::findInorderPre(Node* searchNode)
 {
-	return nullptr;
+	if (searchNode->lTag == false)
+		return searchNode->left;
+	searchNode = searchNode->left;
+	while (searchNode->rTag != false)
+		searchNode = searchNode->right;
+	return searchNode;
 }
 
-string BinarySearchTree::getCustomerName(Node * searchNode)
+string BinarySearchTree::getCustomerName(Node* searchNode)
 {
 	return std::string();
 }
 
-string BinarySearchTree::getCustomerPhone(Node * searchNode)
+string BinarySearchTree::getCustomerPhone(Node* searchNode)
 {
 	return std::string();
 }
@@ -223,4 +228,26 @@ void BinarySearchTree::postOrderTraversalIterative()
 		cout << s.getTop()->name << ", " << s.getTop()->phone << endl;
 		s.pop();
 	}
+}
+
+void BinarySearchTree::deleteNode(std::string searchName)
+{
+	Node* toDelete = findCustomerIterative(searchName);
+}
+
+void BinarySearchTree::reverseInOrderTraverse()
+{
+	cout << "REVERSE INORDER TRAVERSAL ITERATIVE" << endl;
+
+	Node* temp = root->left;
+	while (temp->rTag == true)
+	{
+		temp = temp->right;
+	}
+	while (temp != root)
+	{
+		cout << temp->name << ", " << temp->phone << endl;
+		temp = findInorderPre(temp); 
+	}
+	cout << endl;
 }

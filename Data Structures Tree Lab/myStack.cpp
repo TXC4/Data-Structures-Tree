@@ -24,7 +24,7 @@ void myStack::pop()
 	if (top != head)
 	{
 		top = top->previous;
-		//delete top->next;
+		delete top->next; //return to storage
 	}
 	else
 		std::cout << "Stack empty. Can't pop" << std::endl;

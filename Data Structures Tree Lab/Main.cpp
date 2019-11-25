@@ -7,8 +7,10 @@ using namespace std;
 int main()
 {
 	BinarySearchTree Tree;
+
+	cout << "BEGIN C OPTION TASKS:" << endl << endl;
 	Node* nodeList = NULL;
-	nodeList = new Node[11];
+	nodeList = new Node[13];
 	nodeList[0].name = "Moutafis";
 	nodeList[0].phone = "295-1492";
 	nodeList[1].name = "Ikerd";
@@ -54,5 +56,23 @@ int main()
 	Tree.inOrderTraversalIterative(Tree.getRoot());
 	Tree.preOrderTraversalIterative();
 	Tree.postOrderTraversalIterative();
+
+	cout << "______________________________________________________________________" << 
+		endl <<
+		"BEGIN B OPTION TASKS" << 
+		endl << endl;
+
+	//Tree.deleteNode("Robson");
+	//Tree.deleteNode("Moutafis");
+	//Tree.deleteNode("Ikerd");
+	nodeList[11].name = "Poudel";
+	nodeList[11].phone = "294-1666";
+	nodeList[12].name = "Spell";
+	nodeList[12].phone = "295-1882";
+	Tree.insertBinarySearchTree(&nodeList[11]);
+	Tree.insertBinarySearchTree(&nodeList[12]);
+	Tree.inOrderTraversalIterative(Tree.getRoot());
+	Tree.reverseInOrderTraverse();
+	Tree.preOrderTraversalIterative();
 	cin.get();
 }
