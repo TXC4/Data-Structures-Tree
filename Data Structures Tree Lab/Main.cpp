@@ -45,9 +45,9 @@ int main()
 
 	Tree.inOrderTraversalIterative(Tree.getRoot());
 	Tree.findCustomerIterative("Ortiz"); 
-	Tree.findCustomerRecursive(Tree.getRoot(), "Ortiz");
+	Tree.findCustomerRecursive(Tree.getRoot()->left, "Ortiz");/////////////////////////////////
 	Tree.findCustomerIterative("Penton");
-	Tree.findCustomerRecursive(Tree.getRoot(), "Penton");
+	Tree.findCustomerRecursive(Tree.getRoot()->left, "Penton");
 	Tree.inOrderTraversalIterative(Tree.findCustomerIterative("Ikerd"));
 
 	Tree.insertBinarySearchTree(&nodeList[8]);

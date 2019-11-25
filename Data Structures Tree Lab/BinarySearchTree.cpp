@@ -1,8 +1,7 @@
 #include "BinarySearchTree.h"
 #include <iostream>
 #include <string>
-#include "myStack.h"
-//#include <stack>
+#include "myStack.h" //for postorder iterative
 
 using namespace std;
 
@@ -22,7 +21,6 @@ Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
 		newNode->lTag = root->lTag;
 		root->lTag = true;
 		newNode->right = root;
-		//test
 		newNode->rTag = false;
 		return nullptr;
 	}
@@ -33,9 +31,8 @@ Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
 		{
 			if (newNode->name < temp->name)
 			{
-				if (temp->lTag == false)
+				if (temp->lTag == false)//ins left
 				{
-					//insert left child
 					newNode->left = temp->left;
 					temp->left = newNode;
 					newNode->lTag = temp->lTag;
@@ -50,9 +47,8 @@ Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
 			}
 			else
 			{
-				if (temp->rTag == false)
+				if (temp->rTag == false)//ins right
 				{
-					//insert right child
 					newNode->right = temp->right;
 					temp->right = newNode;
 					newNode->rTag = temp->rTag;
@@ -115,24 +111,22 @@ Node * BinarySearchTree::findCustomerIterative(string searchName)
 
 Node * BinarySearchTree::findCustomerRecursive(Node* thisRoot, string searchName)
 {
-	Node* temp = thisRoot->left;
-	if (searchName < temp->name && temp->lTag == true)
-		temp = temp->left;
-	else if (searchName > temp->name && temp->rTag == true)
+	thisRoot = thisRoot;
+	if (thisRoot->lTag == false && thisRoot->rTag == false &&
+		searchName != thisRoot->name)
 	{
-		temp = temp->right;
+		cout << "Recursive Search could not find " << searchName << endl;
+		return nullptr;
 	}
-	else if (searchName == temp->name)
+	if (searchName > thisRoot->name)
+		findCustomerRecursive(thisRoot->right, searchName);
+	if (searchName < thisRoot->name)
+		findCustomerRecursive(thisRoot->left, searchName);
+	if (searchName == thisRoot->name)
 	{
-		cout << "Recursive Search Found:  " << temp->name << ", " << temp->phone << endl;
-		return temp;
+		cout << "Recursive Search found:  " << thisRoot->name << ", " << thisRoot->phone << endl;
+		return thisRoot;
 	}
-	if (temp->rTag == true || temp->lTag == true)
-	{
- 		return findCustomerRecursive(temp, searchName);
-	}
-	cout << "Recursive Search: " << searchName << " not found in tree" << endl;
-	return nullptr;
 }
 
 Node* BinarySearchTree::findInorderPre(Node* searchNode)
@@ -254,13 +248,10 @@ void BinarySearchTree::postOrderTraversalIterative()
 void BinarySearchTree::postOrderTraversalRecursive(Node* thisRoot)
 {
 	thisRoot = thisRoot;
-	//if (thisRoot->rTag == false && thisRoot->lTag == false)
-	//	return;
 	if (thisRoot->lTag == true)
 		postOrderTraversalRecursive(thisRoot->left);
 	if (thisRoot->rTag == true)
 		postOrderTraversalRecursive(thisRoot->right);
-
 	cout << thisRoot->name << endl;
 }
 
@@ -286,7 +277,7 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		cout << "Deleted " << searchName << endl;
 		//delete returnMeToStorage;
 	}
-	if (temp->lTag == true || temp->rTag == true) //has one child
+	if (temp->lTag == true || temp->rTag == true) //1 child
 	{
 		if (temp->lTag == true)
 			grandChild = temp->left;
