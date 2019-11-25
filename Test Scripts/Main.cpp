@@ -1,19 +1,22 @@
 #include <iostream>
 #include <string>
+#include <stack>
 
 using namespace std;
 
-struct Node
-{
-	Node* left;
-	Node* right;
-	bool lTag;
-	bool rTag;
-	int data;
-};
+stack<int>s;
 
 int main()
 {
-	cout << "Hi";
+	s.push(5);
+	s.push(10);
+	s.push(15);
+	s.push(20);
+	while(!s.empty())
+	{
+		int x = s.top();
+		s.pop();
+		cout << x << endl;
+	}
 	cin.get();
 }

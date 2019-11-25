@@ -1,6 +1,8 @@
 #include "BinarySearchTree.h"
 #include <iostream>
 #include <string>
+#include "myStack.h"
+//#include <stack>
 
 using namespace std;
 
@@ -163,8 +165,62 @@ void BinarySearchTree::inOrderTraversalIterative(Node* thisRoot)
 
 void BinarySearchTree::preOrderTraversalIterative()
 {
+	cout << "PREORDER TRAVERSAL ITERATIVE" << endl;
+	Node* temp = root->left;
+	cout << temp->name << ", " << temp->phone << endl;
+	while (temp != root)
+	{
+		if (temp->lTag == true)
+		{
+			temp = temp->left;
+			cout << temp->name << ", " << temp->phone << endl;
+		}
+		else if (temp->rTag == true)
+		{
+			temp = temp->right;
+			cout << temp->name << ", " << temp->phone << endl;
+		}
+		else if (temp->rTag == false)
+		{
+			while (temp->rTag == false)
+			{
+				temp = temp->right;
+			}
+			temp = temp->right;
+			if (temp != root)
+				cout << temp->name << ", " << temp->phone << endl;
+			else
+				cout << endl;
+		}
+	}
 }
 
 void BinarySearchTree::postOrderTraversalIterative()
 {
+	cout << "POST ORDER TRAVERSAL" << endl;
+	if (root->left == root)
+	{
+		cout << "Tree is empty" << endl;
+		return;
+	}
+	Node* temp = root->left;
+	myStack s;
+	s.push(temp);
+	while (temp->left != root)
+	{
+		if (temp->rTag == true)
+			temp = temp->right;
+		else
+		{
+			while (temp->lTag != true)
+				temp = temp->left;
+			temp = temp->left;
+		}
+		s.push(temp);
+	}
+	while (!s.isEmpty())
+	{
+		cout << s.getTop()->name << ", " << s.getTop()->phone << endl;
+		s.pop();
+	}
 }

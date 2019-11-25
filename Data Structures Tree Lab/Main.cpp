@@ -52,7 +52,7 @@ int main()
 	Tree.insertBinarySearchTree(&nodeList[10]);
 
 	Tree.inOrderTraversalIterative(Tree.getRoot());
-	//Tree.preOrderTraversalIterative();
-	//Tree.postOrderTraversalIterative();
+	Tree.preOrderTraversalIterative();
+	Tree.postOrderTraversalIterative();
 	cin.get();
 }
