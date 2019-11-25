@@ -269,48 +269,10 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		}
 		toDelete->name = temp->name;
 		toDelete->phone = temp->phone;
-		cout << "Deleted " << searchName << " :  had 2 children" << endl;
+		cout << "Deleted " << searchName << endl;
+		//delete temp;
 	}
-	/*
-	if (temp->lTag == true && temp->rTag == true)//has 2 children
-	{
-		
-		Node* suc = findInorderSuc(temp);
-		
-		while (suc->lTag == true && suc->left != root)
-		{
-			suc = suc->left;
-		}
-		//does not handle case that both children have children
-		//TODO if child has one child, promote that child
-		//	else handle as ancestor
-		if (parent == nullptr)
-		{
-			//if (temp->left == root)
-				//root->lTag = false;
-			root->left = temp->left;
-			temp->left->rTag = temp->rTag;
-			temp->left->right = temp->right;
-			cout << "Deleted " << searchName << endl;
-			return;
-		}
-		//deletes Robson or Gladwin
-		//untested with right subtree
-		if (suc->lTag == false && suc->rTag == false)
-		{
-			//Node* parentSuc = findParent(suc->name);
-			temp->name = suc->name;
-			temp->phone = suc->phone;
-			temp->rTag = suc->rTag;
-			temp->right = suc->right;
-			cout << "Deleted " << searchName << endl;
-		}
-		else
-		{
-
-		}
-		*/
-	else if (temp->lTag == true || temp->rTag == true) //has one child
+	if (temp->lTag == true || temp->rTag == true) //has one child
 	{
 		if (temp->lTag == true)
 			grandChild = temp->left;
@@ -332,8 +294,7 @@ void BinarySearchTree::deleteNode(std::string searchName)
 				findInorderSuc(temp)->left = findInorderPre(temp);
 		}
 		cout << "Deleted " << temp->name << endl;
-		//delete temp
-		return;
+		//delete temp;
 	}
 	else if (temp->rTag == false && temp->lTag == false) //no children
 	{
@@ -354,7 +315,6 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		}
 		cout << "Deleted " << temp->name << endl;
 		//delete temp;
-		return;
 	}
 }
 

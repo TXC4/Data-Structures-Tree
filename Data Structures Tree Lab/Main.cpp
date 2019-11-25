@@ -65,17 +65,22 @@ int main()
 
 	Tree.deleteNode("Robson");
 	Tree.deleteNode("Moutafis");
-	Tree.inOrderTraversalIterative(Tree.getRoot());
 	Tree.deleteNode("Ikerd");
-	Tree.deleteNode("Avila");
+
 	nodeList[11].name = "Poudel";
 	nodeList[11].phone = "294-1666";
 	nodeList[12].name = "Spell";
 	nodeList[12].phone = "295-1882";
 	Tree.insertBinarySearchTree(&nodeList[11]);
 	Tree.insertBinarySearchTree(&nodeList[12]);
+
 	Tree.inOrderTraversalIterative(Tree.getRoot());
 	Tree.reverseInOrderTraverse();
 	Tree.preOrderTraversalIterative(); 
+
+	cout << "______________________________________________________________________" <<
+		endl <<
+		"BEGIN A OPTION TASKS" <<
+		endl << endl;
 	cin.get();
 }
