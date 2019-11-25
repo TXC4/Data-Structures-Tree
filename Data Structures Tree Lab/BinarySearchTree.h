@@ -16,7 +16,7 @@ public:
 		root->phone = "";
 	}
 	Node* getRoot();
-	Node* insertBinarySearchTree(Node* newNode);
+	Node* insertBinarySearchTree(std::string name, std::string phone);
 	Node* findParent(std::string searchName);
 	Node* findCustomerIterative(std::string searchName);
 	Node* findCustomerRecursive(Node* thisRoot, std::string searchName);

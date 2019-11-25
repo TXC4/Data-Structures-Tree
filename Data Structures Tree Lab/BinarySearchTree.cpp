@@ -5,15 +5,17 @@
 
 using namespace std;
 
-Node * BinarySearchTree::getRoot()
-{
-	return root;
-}
+Node * BinarySearchTree::getRoot(){ return root; }
 
-Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
+//Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
+Node* BinarySearchTree::insertBinarySearchTree(string name, string phone)
 {
+	Node* newNode = new Node;
+	newNode->name = name;
+	newNode->phone = phone;
 	newNode->lTag = false;
 	newNode->rTag = false;
+
 	if (root == root->left && root == root->right)
 	{
 		newNode->left = root;
@@ -276,6 +278,7 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		toDelete->phone = temp->phone;
 		cout << "Deleted " << searchName << endl;
 		//delete returnMeToStorage;
+		//return;
 	}
 	if (temp->lTag == true || temp->rTag == true) //1 child
 	{
@@ -300,6 +303,7 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		}
 		cout << "Deleted " << temp->name << endl;
 		//delete temp;
+		//return;
 	}
 	else if (temp->rTag == false && temp->lTag == false) //no children
 	{
@@ -320,6 +324,7 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		}
 		cout << "Deleted " << temp->name << endl;
 		//delete temp;
+		//return;
 	}
 }
 
