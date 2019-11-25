@@ -56,15 +56,18 @@ int main()
 	Tree.inOrderTraversalIterative(Tree.getRoot());
 	Tree.preOrderTraversalIterative();
 	Tree.postOrderTraversalIterative();
-
+	//test
+	Node* testing = Tree.findCustomerIterative("Villatoro");
 	cout << "______________________________________________________________________" << 
 		endl <<
 		"BEGIN B OPTION TASKS" << 
 		endl << endl;
 
-	//Tree.deleteNode("Robson");
-	//Tree.deleteNode("Moutafis");
-	//Tree.deleteNode("Ikerd");
+	Tree.deleteNode("Robson");
+	Tree.deleteNode("Moutafis");
+	Tree.inOrderTraversalIterative(Tree.getRoot());
+	Tree.deleteNode("Ikerd");
+	Tree.deleteNode("Avila");
 	nodeList[11].name = "Poudel";
 	nodeList[11].phone = "294-1666";
 	nodeList[12].name = "Spell";
@@ -73,6 +76,6 @@ int main()
 	Tree.insertBinarySearchTree(&nodeList[12]);
 	Tree.inOrderTraversalIterative(Tree.getRoot());
 	Tree.reverseInOrderTraverse();
-	Tree.preOrderTraversalIterative();
+	Tree.preOrderTraversalIterative(); 
 	cin.get();
 }

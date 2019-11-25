@@ -17,6 +17,7 @@ public:
 	}
 	Node* getRoot();
 	Node* insertBinarySearchTree(Node* newNode);
+	Node* findParent(std::string searchName);
 	Node* findCustomerIterative(std::string searchName);
 	Node* findCustomerRecursive(Node* thisRoot, std::string searchName);
 	Node* findInorderPre(Node* searchNode);

@@ -69,6 +69,27 @@ Node * BinarySearchTree::insertBinarySearchTree(Node * newNode)
 	}
 }
 
+Node * BinarySearchTree::findParent(std::string searchName)
+{
+	Node* temp = root->left;
+	if (searchName == temp->name)
+	{
+		cout << "Find Parent:  Orphan" << endl;
+		return nullptr;
+	}
+	while (temp->lTag == true || temp->rTag == true)
+	{
+		if (searchName == temp->left->name || searchName == temp->right->name)
+			return temp;
+		if (searchName < temp->name)
+			temp = temp->left;
+		else if (searchName > temp->name)
+			temp = temp->right;
+	}
+	cout << "Find Parent:  No child found" << endl;
+	return nullptr;
+}
+
 Node * BinarySearchTree::findCustomerIterative(string searchName)
 {
 	Node* temp = root->left;
@@ -233,6 +254,108 @@ void BinarySearchTree::postOrderTraversalIterative()
 void BinarySearchTree::deleteNode(std::string searchName)
 {
 	Node* toDelete = findCustomerIterative(searchName);
+	Node* parent = findParent(searchName);
+	Node* temp = toDelete;
+	Node* grandChild;
+	
+	if (toDelete->rTag && toDelete->lTag)//2 children
+	{
+		parent = toDelete;
+		temp = toDelete->left;
+		while (temp->rTag == true)
+		{
+			parent = temp;
+			temp = temp->right;
+		}
+		toDelete->name = temp->name;
+		toDelete->phone = temp->phone;
+		cout << "Deleted " << searchName << " :  had 2 children" << endl;
+	}
+	/*
+	if (temp->lTag == true && temp->rTag == true)//has 2 children
+	{
+		
+		Node* suc = findInorderSuc(temp);
+		
+		while (suc->lTag == true && suc->left != root)
+		{
+			suc = suc->left;
+		}
+		//does not handle case that both children have children
+		//TODO if child has one child, promote that child
+		//	else handle as ancestor
+		if (parent == nullptr)
+		{
+			//if (temp->left == root)
+				//root->lTag = false;
+			root->left = temp->left;
+			temp->left->rTag = temp->rTag;
+			temp->left->right = temp->right;
+			cout << "Deleted " << searchName << endl;
+			return;
+		}
+		//deletes Robson or Gladwin
+		//untested with right subtree
+		if (suc->lTag == false && suc->rTag == false)
+		{
+			//Node* parentSuc = findParent(suc->name);
+			temp->name = suc->name;
+			temp->phone = suc->phone;
+			temp->rTag = suc->rTag;
+			temp->right = suc->right;
+			cout << "Deleted " << searchName << endl;
+		}
+		else
+		{
+
+		}
+		*/
+	else if (temp->lTag == true || temp->rTag == true) //has one child
+	{
+		if (temp->lTag == true)
+			grandChild = temp->left;
+		else
+			grandChild = temp->right;
+		if (parent == nullptr)
+		{
+			root->left = temp;
+		}
+		else if (temp == parent->left)
+			parent->left = grandChild;
+		else
+			parent->right = grandChild;
+		if (temp->lTag == true)
+			findInorderPre(temp)->right = findInorderSuc(temp);
+		else
+		{
+			if (temp->rTag == true)
+				findInorderSuc(temp)->left = findInorderPre(temp);
+		}
+		cout << "Deleted " << temp->name << endl;
+		//delete temp
+		return;
+	}
+	else if (temp->rTag == false && temp->lTag == false) //no children
+	{
+		if (parent == nullptr)
+		{
+			root->left = root;
+			root->lTag = false;
+		}
+		else if (temp == parent->left)
+		{
+			parent->lTag = false;
+			parent->left = temp->left;
+		}
+		else
+		{
+			parent->rTag = false;
+			parent->right = temp->right;
+		}
+		cout << "Deleted " << temp->name << endl;
+		//delete temp;
+		return;
+	}
 }
 
 void BinarySearchTree::reverseInOrderTraverse()
