@@ -1,22 +1,25 @@
 #include <iostream>
 #include <string>
-#include <stack>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 
-stack<int>s;
 
+struct thing
+{
+	string n;
+	string p;
+};
 int main()
 {
-	s.push(5);
-	s.push(10);
-	s.push(15);
-	s.push(20);
-	while(!s.empty())
-	{
-		int x = s.top();
-		s.pop();
-		cout << x << endl;
-	}
+	ifstream in;
+	in.open("Book1.csv");
+	string name;
+	string phone;
+	while(getline(in, name, ',') && getline(in, phone, '\n'))
+		cout << "*" << name << "*" << phone << "*" <<  endl;
+	in.close();
 	cin.get();
 }

@@ -1,9 +1,18 @@
 #pragma once
+
+/*
+This tree uses a node with empty data called "root"to point to the actual root
+of the tree with its "left" pointer.  The "left" pointer of the far left
+node of the tree will point back to this pointer as does the "right" pointer of the
+far right node.
+*/
+
 #include "Node.h"
 #include <string>
 
 class BinarySearchTree
 {
+
 public:
 	BinarySearchTree()
 	{
@@ -23,11 +32,11 @@ public:
 	Node* findInorderPre(Node* searchNode);
 	std::string getCustomerName(Node* searchNode);
 	std::string getCustomerPhone(Node* searchNode);
+	void readIn(std::string);
 	void inOrderTraversalIterative(Node* thisRoot);
 	void preOrderTraversalIterative();
 	void postOrderTraversalIterative();
 	void postOrderTraversalRecursive(Node* thisRoot);
-
 	void deleteNode(std::string searchName);
 	void reverseInOrderTraverse();
 private:

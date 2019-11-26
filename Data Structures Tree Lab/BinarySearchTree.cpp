@@ -1,6 +1,7 @@
 #include "BinarySearchTree.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "myStack.h" //for postorder iterative
 
 using namespace std;
@@ -151,6 +152,17 @@ string BinarySearchTree::getCustomerPhone(Node* searchNode)
 	return std::string();
 }
 
+//takes .csv file name to read from
+void BinarySearchTree::readIn(string file)
+{
+	string name, phone;
+	ifstream in;
+	in.open(file);
+	while (getline(in, name, ',') && getline(in, phone, '\n'))
+		this->insertBinarySearchTree(name, phone);
+	in.close();
+}
+
 Node* findInorderSuc(Node* temp)
 {
 	if (temp->rTag == false)
@@ -276,9 +288,6 @@ void BinarySearchTree::deleteNode(std::string searchName)
 		}
 		toDelete->name = temp->name;
 		toDelete->phone = temp->phone;
-		cout << "Deleted " << searchName << endl;
-		//delete returnMeToStorage;
-		//return;
 	}
 	if (temp->lTag == true || temp->rTag == true) //1 child
 	{
@@ -301,9 +310,7 @@ void BinarySearchTree::deleteNode(std::string searchName)
 			if (temp->rTag == true)
 				findInorderSuc(temp)->left = findInorderPre(temp);
 		}
-		cout << "Deleted " << temp->name << endl;
-		//delete temp;
-		//return;
+		cout << "Deleted " << searchName << endl;
 	}
 	else if (temp->rTag == false && temp->lTag == false) //no children
 	{
@@ -322,10 +329,9 @@ void BinarySearchTree::deleteNode(std::string searchName)
 			parent->rTag = false;
 			parent->right = temp->right;
 		}
-		cout << "Deleted " << temp->name << endl;
-		//delete temp;
-		//return;
+		cout << "Deleted " << searchName << endl;
 	}
+	delete temp; //return to storage
 }
 
 void BinarySearchTree::reverseInOrderTraverse()
